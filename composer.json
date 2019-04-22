@@ -1,0 +1,13 @@
+{
+    "name": "mappweb/mappweb",
+    "description": "Utilities for laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Diego",
+            "email": "diego.toscanof@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
