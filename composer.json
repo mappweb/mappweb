@@ -8,23 +8,10 @@
             "email": "diego.toscanof@gmail.com"
         }
     ],
+    "require": {},
     "autoload": {
         "psr-4": {
             "Mappweb\\Mappweb\\": "src/"
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {}
+    }
 }
