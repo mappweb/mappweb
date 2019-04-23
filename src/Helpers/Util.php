@@ -11,6 +11,7 @@ namespace mappweb\mappweb\Helpers;
 class Util
 {
     /**
+     * Update or Create a Model
      * @param $class
      * @param $request
      * @param null $id
