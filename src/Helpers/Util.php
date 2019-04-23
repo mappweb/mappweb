@@ -34,19 +34,19 @@ class Util
     {
         if ($data['success']) {
             $data['toast']['tipo'] = 'success';
-            $data['toast']['titulo'] = __('toast.titulo.si');
-            $data['toast']['mensaje'] = __('toast.mensaje.si');
+            $data['toast']['titulo'] = __('MappWeb::toast.title.success');
+            $data['toast']['mensaje'] = __('MappWeb::toast.body.success');
 
             if ($destroy){
-                $data['toast']['mensaje'] = __('toast.mensaje.eliminado.si');
+                $data['toast']['mensaje'] = __('MappWeb::toast.body_delete.error');
             }
         } else {
             $data['toast']['tipo'] = 'error';
-            $data['toast']['titulo'] = __('toast.titulo.no');
-            $data['toast']['mensaje'] = __('toast.mensaje.no');
+            $data['toast']['titulo'] = __('MappWeb::toast.title.error');
+            $data['toast']['mensaje'] = __('MappWeb::toast.body.error');
 
             if ($destroy){
-                $data['toast']['mensaje'] = __('toast.mensaje.eliminado.no');
+                $data['toast']['mensaje'] = __('MappWeb::toast.body_delete.error');
             }
         }
     }
