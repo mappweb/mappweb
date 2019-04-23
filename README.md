@@ -9,5 +9,5 @@ Utilidades Laravel
  
 ## Quick Installation
 ```bash
-$ composer require composer require mappweb/mappweb
+$ composer require mappweb/mappweb
 ```
