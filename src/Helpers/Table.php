@@ -32,14 +32,14 @@ class Table extends Builder
         $this->addAction(['title' => __('global.accion')]);
     }
 
-    public function addParameters()
+    public function addParameters($drawCallback = 'function(){ }')
     {
         $this->parameters([
             'responsive' => true,
             'language' => [
-                'url' => '/template/js/lang/dataTable/i18n/Spanish.lang'
+                'url' => '//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
             ],
-            'drawCallback' => 'function(){ ADMIN.ELEMENTS.body.trigger("tooltips.init"); }'
+            'drawCallback' => $drawCallback
         ]);
     }
 
