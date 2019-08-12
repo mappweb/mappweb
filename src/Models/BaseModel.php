@@ -11,8 +11,9 @@ namespace Mappweb\Mappweb\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use OwenIt\Auditing\Contracts\Auditable;
+use Mappweb\Mappweb\Models\Extensions\EventsManager;
 use OwenIt\Auditing\Auditable as AuditableTrait;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -21,5 +22,17 @@ use OwenIt\Auditing\Auditable as AuditableTrait;
  */
 class BaseModel extends Model implements Auditable
 {
-    use SoftDeletes, AuditableTrait;
+    use SoftDeletes, AuditableTrait, EventsManager;
+
+    /**
+     * Allow store created_by field to table
+     * @var boolean $addCreatedBy
+     */
+    protected $addCreatedBy = true;
+
+    /**
+     * Allow store updated_by field to table
+     * @var boolean $addUpdatedBy
+     */
+    protected $addUpdatedBy = true;
 }
