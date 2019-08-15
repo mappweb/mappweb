@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 
 class MappWebServiceProvider extends ServiceProvider
 {
+
+    private $_packageTag = 'mappweb';
+
     /**
      * Bootstrap any application services.
      *
@@ -14,12 +17,14 @@ class MappWebServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $publishTag = $this->_packageTag;
+
         // Language
         $this->loadTranslationsFrom( __DIR__.'/Lang', 'MappWeb');
 
         $this->publishes([
             __DIR__.'/Lang' => base_path('resources/lang'),
-        ]);
+        ], $publishTag.'-langs');
 
     }
 

@@ -5,7 +5,7 @@ Utilidades Laravel
 
  Laravel  | Package
 :---------|:----------
-
+v5.8      | v1.*
  
 ## Quick Installation
 ```bash
