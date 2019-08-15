@@ -26,7 +26,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "mappweb\\mappweb\\MappWebServiceProvider"
+                "Mappweb\\Mappweb\\MappWebServiceProvider"
             ]
         },
         "branch-alias": {

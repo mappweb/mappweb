@@ -8,6 +8,8 @@
 
 namespace mappweb\mappweb\Helpers;
 
+use Illuminate\Http\Request;
+
 class Util
 {
     /**
@@ -18,10 +20,7 @@ class Util
      * @return mixed
      */
     public static function updateOrCreate($class, $request, $id = null){
-        if(is_array($id))
-            return $class::updateOrCreate($id, $request->all());
-        else
-            return $class::updateOrCreate(['id' => $id], $request->all());
+        return $class::updateOrCreate((is_array($id))?$id:['id' => $id], ($request instanceof Request)?$request->all():$request);
     }
 
     /**
