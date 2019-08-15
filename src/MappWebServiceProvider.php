@@ -1,6 +1,6 @@
 <?php
 
-namespace mappweb\mappweb\Helpers;
+namespace mappweb\mappweb;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\ServiceProvider;
