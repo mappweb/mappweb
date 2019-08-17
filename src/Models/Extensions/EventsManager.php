@@ -8,11 +8,17 @@
 namespace Mappweb\Mappweb\Models\Extensions;
 
 
+use Illuminate\Support\Str;
+
 trait EventsManager
 {
     public static function bootEventsManager()
     {
         static::creating(function ($model){
+            if ($model->allowUuid){
+                $model->{$model->getKeyName()} = (string) Str::uuid();
+            }
+
             self::addCreatedBy($model);
         });
 

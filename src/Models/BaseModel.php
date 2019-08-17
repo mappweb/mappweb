@@ -35,4 +35,26 @@ class BaseModel extends Model implements Auditable
      * @var boolean $addUpdatedBy
      */
     protected $addUpdatedBy = true;
+
+    /**
+     * Allow uuid like primary key
+     * @var bool $allowUuid
+     */
+    protected $allowUuid = true;
+
+    public function getIncrementing()
+    {
+        if ($this->allowUuid){
+            return false;
+        }
+        return true;
+    }
+
+    public function getKeyType()
+    {
+        if ($this->allowUuid){
+            return 'string';
+        }
+        return 'int';
+    }
 }
