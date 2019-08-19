@@ -3,6 +3,7 @@
 namespace Mappweb\Mappweb;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
 
 class MappWebServiceProvider extends ServiceProvider
@@ -17,15 +18,14 @@ class MappWebServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $publishTag = $this->_packageTag;
+        //loads
+        $this->loadTranslationsFrom( __DIR__.'/Resources/lang', 'MappWeb');
 
-        // Language
-        $this->loadTranslationsFrom( __DIR__.'/Lang', 'MappWeb');
+        //publish
+        $this->publish();
 
-        $this->publishes([
-            __DIR__.'/Lang' => base_path('resources/lang'),
-        ], $publishTag.'-langs');
-
+        //boots
+        $this->bootCrudAjaxMacroRespose();
     }
 
     /**
@@ -35,6 +35,26 @@ class MappWebServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerAuditableMacroBlueprint();
+    }
+
+    protected function publish()
+    {
+        $paths = [
+            __DIR__ .'/Resources/lang' => base_path('resources/lang'),
+            __DIR__ .'/Resources/js' => base_path('resources/js')
+        ];
+
+        $groups = [
+            $this->_packageTag .'-langs',
+            $this->_packageTag .'-js',
+        ];
+
+        $this->publishes($paths, $groups);
+    }
+
+    protected function registerAuditableMacroBlueprint()
+    {
         Blueprint::macro('auditable', function (){
             $this->uuid('created_by')->nullable()->index();
             $this->uuid('updated_by')->nullable()->index();
@@ -42,6 +62,13 @@ class MappWebServiceProvider extends ServiceProvider
 
         Blueprint::macro('dropAuditable', function (){
             $this->dropColumn(['created_by', 'updated_by']);
+        });
+    }
+
+    protected function bootCrudAjaxMacroRespose()
+    {
+        Response::macro('crud', function ($object){
+            return Response::json($object);
         });
     }
 }
