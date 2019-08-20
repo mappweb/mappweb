@@ -95,6 +95,7 @@ $(document).ready(function () {
             data = new FormData(form[0]);
             options.contentType = false;
             options.processData = false;
+            options.headers = {'X-CSRF-TOKEN': form.find('input[name=_token]').val()};
         }
 
         options.data = data;
