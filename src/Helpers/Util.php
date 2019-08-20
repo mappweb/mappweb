@@ -32,20 +32,20 @@ class Util
     public static function addToastToData(array &$data, $destroy = false)
     {
         if ($data['success']) {
-            $data['toast']['tipo'] = 'success';
-            $data['toast']['titulo'] = __('MappWeb::toast.title.success');
-            $data['toast']['mensaje'] = __('MappWeb::toast.body.success');
+            $data['toast']['type'] = 'success';
+            $data['toast']['title'] = __('MappWeb::toast.title.success');
+            $data['toast']['message'] = __('MappWeb::toast.body.success');
 
             if ($destroy){
-                $data['toast']['mensaje'] = __('MappWeb::toast.body_delete.error');
+                $data['toast']['message'] = __('MappWeb::toast.body_delete.error');
             }
         } else {
-            $data['toast']['tipo'] = 'error';
-            $data['toast']['titulo'] = __('MappWeb::toast.title.error');
-            $data['toast']['mensaje'] = __('MappWeb::toast.body.error');
+            $data['toast']['type'] = 'error';
+            $data['toast']['title'] = __('MappWeb::toast.title.error');
+            $data['toast']['message'] = __('MappWeb::toast.body.error');
 
             if ($destroy){
-                $data['toast']['mensaje'] = __('MappWeb::toast.body_delete.error');
+                $data['toast']['message'] = __('MappWeb::toast.body_delete.error');
             }
         }
     }
