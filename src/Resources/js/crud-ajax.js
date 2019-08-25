@@ -161,14 +161,13 @@ $(document).ready(function () {
         let errors = JSON.parse(response.responseText).errors;
 
         $.each(errors, function (element, index) {
-            $('div[data-message="'+element+'"]').addClass('error');
-            $('label[data-message="' + element + '"]').text(index);
+            $('[name=' + element + ']').addClass('is-invalid');
+            $('div[data-feedback="' + element + '"]').addClass('invalid-feedback').text(index);
         });
     }
 
     function removeErrors() {
-        $('div[data-message]').removeClass('error');
-        $('small', 'span[data-message]').text('');
+        $('.is-invalid').removeClass('is-invalid');
     }
 });
 
