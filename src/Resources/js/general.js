@@ -81,13 +81,19 @@
     }
 
     function initDropify() {
-        $('.dropify').dropify({
-            messages: {
-                'default': 'Drag and drop a file here or click',
-                'replace': 'Drag and drop or click to replace',
-                'remove':  'Remove',
-                'error':   'Ooops, something wrong happended.'
-            }
+        $('.dropify').each(function() {
+            var ms_default = $( this ).data('message-default');
+            var ms_replace = $( this ).data('message-replace');
+            var ms_remove = $( this ).data('message-remove');
+            var ms_error = $( this ).data('message-error');
+            $(this).dropify({
+                messages: {
+                    'default': (ms_default != undefined)?ms_default:'Drag and drop a file here or click',
+                    'replace': (ms_replace != undefined)?ms_replace:'Drag and drop or click to replace',
+                    'remove':  (ms_remove != undefined)?ms_remove:'Remove',
+                    'error':   (ms_error != undefined)?ms_error:'Ooops, something wrong happended.'
+                }
+            });
         });
     }
 
