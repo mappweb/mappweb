@@ -40,17 +40,18 @@ class MappWebServiceProvider extends ServiceProvider
 
     protected function publish()
     {
-        $paths = [
+        $this->publishes([
+            __DIR__ .'/Resources/lang' => base_path('resources/lang')
+        ], $this->_packageTag .'-langs');
+
+        $this->publishes([
+            __DIR__ .'/Resources/js' => base_path('resources/js')
+        ],$this->_packageTag .'-js');
+
+        $this->publishes([
             __DIR__ .'/Resources/lang' => base_path('resources/lang'),
             __DIR__ .'/Resources/js' => base_path('resources/js')
-        ];
-
-        $groups = [
-            $this->_packageTag .'-langs',
-            $this->_packageTag .'-js',
-        ];
-
-        $this->publishes($paths, $groups);
+        ], $this->_packageTag);
     }
 
     protected function registerAuditableMacroBlueprint()
