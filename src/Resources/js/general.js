@@ -26,6 +26,9 @@
     ADMIN.ELEMENTS.body.on('toLowerCaseInput.init', toLowerCaseInput);
     ADMIN.ELEMENTS.body.on('hideSelect.init', hideSelect);
 
+    /**
+     *
+     */
     function initFloatingLabels() {
         //On focus event
         $('.form-control').focus(function () {
@@ -56,10 +59,16 @@
         });
     }
 
+    /**
+     *
+     */
     function refreshDatatable() {
         window.LaravelDataTables.dataTableBuilder.ajax.reload();
     }
 
+    /**
+     *
+     */
     function initTooltips() {
         $('[data-toggle="tooltip"]').tooltip({
             container:'table'
@@ -67,12 +76,18 @@
 
     }
 
+    /**
+     *
+     */
     function initWysihtml5() {
         $('.wysihtml5').wysihtml5({
             "stylesheets": [] //CSS stylesheets to load
         });
     }
 
+    /**
+     *
+     */
     function initSummernote() {
         $('.summernote').summernote({
             height: 300, // set editor height
@@ -80,6 +95,9 @@
         });
     }
 
+    /**
+     *
+     */
     function initDropify() {
         $('.dropify').each(function() {
             var ms_default = $( this ).data('message-default');
@@ -97,6 +115,9 @@
         });
     }
 
+    /**
+     *
+     */
     function initMultipleAttached() {
         var counter = 0;    
         $('.add_file').click(function() {
@@ -112,10 +133,16 @@
         });
     }
 
+    /**
+     *
+     */
     function initDatePicker() {
         $('.datepicker').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
     }
 
+    /**
+     *
+     */
     function initSelect2() {
         $('.select2').select2({
             width: '100%',
@@ -125,6 +152,15 @@
         });
     }
 
+    /**
+     *
+     * @param object
+     * @param csrf_token
+     * @param url
+     * @param type
+     * @param table_name
+     * @param table_ref
+     */
     function initSwitcher(object, csrf_token, url, type, table_name, table_ref){
 
 
@@ -166,6 +202,11 @@
         });
     }
 
+    /**
+     *
+     * @param event
+     * @param object
+     */
     function initSelect2Ajax(event, object) {
 
         $(object).select2({
@@ -193,6 +234,9 @@
         });
     }
 
+    /**
+     *
+     */
     function formatValueMoney() {
         $("input[data-type='currency']").on({
 
@@ -281,6 +325,9 @@
         }
     }
 
+    /**
+     *
+     */
     function toLowerCaseInput() {
         $('input[name=name]').keyup(function () {
 
@@ -292,6 +339,9 @@
         });
     }
 
+    /**
+     *
+     */
     function hideSelect() {
         $('select[name=role_id]').change(function () {
 

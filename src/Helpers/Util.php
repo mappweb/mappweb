@@ -6,7 +6,7 @@
  * Time: 9:38 AM
  */
 
-namespace mappweb\mappweb\Helpers;
+namespace Mappweb\Mappweb\Helpers;
 
 use Illuminate\Http\Request;
 
