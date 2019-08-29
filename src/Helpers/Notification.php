@@ -6,7 +6,7 @@
  * Time: 11:25 AM
  */
 
-namespace mappweb\mappweb\Helpers;
+namespace Mappweb\Mappweb\Helpers;
 
 
 use LaravelFCM\Facades\FCM;
@@ -16,6 +16,12 @@ use LaravelFCM\Message\PayloadNotificationBuilder;
 
 class Notification
 {
+    /**
+     * @param $message
+     * @param null $title
+     * @param null $url
+     * @param null $icon
+     */
     public static function web($message, $title = null, $url = null, $icon = null){
         $contents = array(
             "en" => $message
@@ -43,6 +49,12 @@ class Notification
         \OneSignal::sendNotificationCustom($params);
     }
 
+    /**
+     * @param $tokens
+     * @param string $title
+     * @param string $body
+     * @return mixed
+     */
     public static function smartPhone($tokens, $title = 'my title', $body = 'Hello world'){
 
         $optionBuilder = new OptionsBuilder();

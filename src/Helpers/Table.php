@@ -1,6 +1,6 @@
 <?php
 
-namespace mappweb\mappweb\Helpers;
+namespace Mappweb\Mappweb\Helpers;
 
 use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Config\Repository;
@@ -15,12 +15,21 @@ class Table extends Builder
      */
     public $class;
 
+    /**
+     * Table constructor.
+     * @param Repository $config
+     * @param Factory $view
+     * @param HtmlBuilder $html
+     */
     public function __construct(Repository $config, Factory $view, HtmlBuilder $html)
     {
         parent::__construct($config, $view, $html);
     }
 
 
+    /**
+     *
+     */
     public function addColumns()
     {
         $columns = $this->class::getColumnsTable();
@@ -32,6 +41,9 @@ class Table extends Builder
         $this->addAction(['title' => __('global.accion')]);
     }
 
+    /**
+     * @param string $drawCallback
+     */
     public function addParameters($drawCallback = 'function(){ }')
     {
         $this->parameters([
@@ -43,6 +55,9 @@ class Table extends Builder
         ]);
     }
 
+    /**
+     * @param $url
+     */
     public function setAjax($url)
     {
         $this->ajax([

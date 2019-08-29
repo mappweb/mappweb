@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 
 trait EventsManager
 {
+    /**
+     *
+     */
     public static function bootEventsManager()
     {
         static::creating(function ($model){
@@ -35,6 +38,9 @@ trait EventsManager
         });
     }
 
+    /**
+     * @param $model
+     */
     protected static function addUpdatedBy(&$model)
     {
         if ($model->addUpdatedBy){
@@ -42,6 +48,9 @@ trait EventsManager
         }
     }
 
+    /**
+     * @param $model
+     */
     protected static function addCreatedBy(&$model)
     {
         if ($model->addCreatedBy){

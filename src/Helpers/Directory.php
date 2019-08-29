@@ -6,12 +6,17 @@
  * Time: 9:29 AM
  */
 
-namespace mappweb\mappweb\Helpers;
+namespace Mappweb\Mappweb\Helpers;
 use File;
 
 
 class Directory
 {
+    /**
+     * Create directories if not exist
+     *
+     * @param $path
+     */
     public static function existOrCreate($path){
         if(!File::exists($path)) {
             File::makeDirectory($path, $mode = 0777, true, true);

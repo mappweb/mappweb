@@ -38,6 +38,9 @@ class MappWebServiceProvider extends ServiceProvider
         $this->registerAuditableMacroBlueprint();
     }
 
+    /**
+     *
+     */
     protected function publish()
     {
         $this->publishes([
@@ -54,6 +57,9 @@ class MappWebServiceProvider extends ServiceProvider
         ], $this->_packageTag);
     }
 
+    /**
+     *
+     */
     protected function registerAuditableMacroBlueprint()
     {
         Blueprint::macro('auditable', function (){
@@ -66,6 +72,9 @@ class MappWebServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     *
+     */
     protected function bootCrudAjaxMacroRespose()
     {
         Response::macro('crud', function ($object){

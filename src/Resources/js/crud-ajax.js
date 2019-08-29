@@ -4,6 +4,10 @@ $(document).ready(function () {
     ADMIN.ELEMENTS.body.on('submit', '.delete-ajax', deleteAjax);
     ADMIN.ELEMENTS.body.on('click', '.delete-modal', showDeleteModal);
 
+    /**
+     *
+     * @param event
+     */
     function openModal(event) {
         event.preventDefault();
 
@@ -33,6 +37,10 @@ $(document).ready(function () {
         })
     }
 
+    /**
+     *
+     * @param evento
+     */
     function saveAjax(evento) {
         evento.preventDefault();
 
@@ -103,6 +111,10 @@ $(document).ready(function () {
         $.ajax(options);
     }
 
+    /**
+     *
+     * @param event
+     */
     function deleteAjax(event){
         event.preventDefault();
 
@@ -143,6 +155,10 @@ $(document).ready(function () {
         $.ajax(options);
     }
 
+    /**
+     *
+     * @param event
+     */
     function showDeleteModal(event) {
         event.preventDefault();
 
@@ -157,6 +173,10 @@ $(document).ready(function () {
         }
     }
 
+    /**
+     *
+     * @param response
+     */
     function showErrors(response) {
         let errors = JSON.parse(response.responseText).errors;
 
@@ -166,11 +186,20 @@ $(document).ready(function () {
         });
     }
 
+    /**
+     *
+     */
     function removeErrors() {
         $('.is-invalid').removeClass('is-invalid');
     }
 });
 
+/**
+ *
+ * @param type
+ * @param title
+ * @param message
+ */
 function showToast(type, title, message){
     toastr.options = {
         "closeButton": true,
@@ -192,6 +221,10 @@ function showToast(type, title, message){
     toastr[type](message, title);
 }
 
+/**
+ *
+ * @param show
+ */
 function spinner(show){
     if (show){
         NProgress.start();

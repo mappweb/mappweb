@@ -42,6 +42,9 @@ class BaseModel extends Model implements Auditable
      */
     protected $allowUuid = true;
 
+    /**
+     * @return bool
+     */
     public function getIncrementing()
     {
         if ($this->allowUuid){
@@ -50,6 +53,9 @@ class BaseModel extends Model implements Auditable
         return true;
     }
 
+    /**
+     * @return string
+     */
     public function getKeyType()
     {
         if ($this->allowUuid){
