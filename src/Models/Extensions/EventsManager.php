@@ -8,6 +8,7 @@
 namespace Mappweb\Mappweb\Models\Extensions;
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 trait EventsManager
@@ -44,7 +45,7 @@ trait EventsManager
     protected static function addUpdatedBy(&$model)
     {
         if ($model->addUpdatedBy){
-            $model->updated_by = 0;
+            $model->updated_by = Auth::id()?? 0;
         }
     }
 
@@ -54,7 +55,7 @@ trait EventsManager
     protected static function addCreatedBy(&$model)
     {
         if ($model->addCreatedBy){
-            $model->created_by = 0;
+            $model->created_by = Auth::id()?? 0;
         }
     }
 }
