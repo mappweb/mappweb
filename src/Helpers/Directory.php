@@ -50,6 +50,6 @@ class Directory
      */
     public function getFilePath()
     {
-        return "{$this->getPath()}".File::basename($this->file);
+        return "{$this->getPath()}".$this->file->getClientOriginalName();
     }
 }
