@@ -9,6 +9,8 @@
 namespace Mappweb\Mappweb\Helpers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class Util
 {
@@ -21,6 +23,37 @@ class Util
      */
     public static function updateOrCreate($class, $request, $id = null){
         return $class::updateOrCreate((is_array($id))?$id:['id' => $id], ($request instanceof Request)?$request->all():$request);
+    }
+
+    /**
+     * Update or Create a File
+     * @param $object
+     * @param $field
+     * @param $input
+     * @param Request $request
+     */
+    public static function updateOrCreateFile($object, $field, $input, &$request){
+
+        if ($request->hasFile("{$input}")) {
+            $file = $request->file("{$input}");
+            if (is_null($object->{"$field"} ?? null)) {
+                $name = uniqid();
+                $directory = new Directory($name, $file);
+                $file->storeAs($directory->getPath(), $file->getClientOriginalName(), 'public');
+                $request->merge([
+                    "{$field}" => 'storage/' . $directory->getFilePath()
+                ]);
+            } else {
+                if (!Str::contains($object->{"$field"} ?? '', $file->getClientOriginalName())) {
+                    File::delete($object->{"$field"});
+                    $url = str_replace('storage', '', substr($object->{"$field"}, 0, (strripos($object->{"$field"}, '/') + 1)));
+                    $file->storeAs($url, $file->getClientOriginalName(), 'public');
+                    $request->merge([
+                        "{$field}" => 'storage' . $url . $file->getClientOriginalName()
+                    ]);
+                }
+            }
+        }
     }
 
     /**
