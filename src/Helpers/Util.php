@@ -37,7 +37,7 @@ class Util
         if ($request->hasFile("{$input}")) {
             $file = $request->file("{$input}");
             if (is_null($object->{"$field"} ?? null)) {
-                $name = uniqid();
+                $name = (Str::length($object->id) > 4) ? $object->id : uniqid();
                 $directory = new Directory($name, $file);
                 $file->storeAs($directory->getPath(), $file->getClientOriginalName(), 'public');
                 $request->merge([
