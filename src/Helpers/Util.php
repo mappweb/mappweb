@@ -33,22 +33,25 @@ class Util
      * @param Request $request
      */
     public static function updateOrCreateFile($object, $field, $input, &$request){
-        $file = $request->file("{$input}");
-        if(is_null($object->{"$field"}??null)){
-            $name = uniqid();
-            $directory = new Directory($name, $file);
-            $file->storeAs( $directory->getPath(), $file->getClientOriginalName(), 'public');
-            $request->merge([
-                "{$field}" => 'storage/' . $directory->getFilePath()
-            ]);
-        }else{
-            if (!Str::contains($object->{"$field"}??'', $file->getClientOriginalName())) {
-                File::delete($object->{"$field"});
-                $url = str_replace('storage', '', substr($object->{"$field"}, 0, (strripos($object->{"$field"}, '/')+1)));
-                $file->storeAs($url, $file->getClientOriginalName(), 'public');
+
+        if ($request->hasFile("{$input}")) {
+            $file = $request->file("{$input}");
+            if (is_null($object->{"$field"} ?? null)) {
+                $name = uniqid();
+                $directory = new Directory($name, $file);
+                $file->storeAs($directory->getPath(), $file->getClientOriginalName(), 'public');
                 $request->merge([
-                    "{$field}" => 'storage' . $url. $file->getClientOriginalName()
+                    "{$field}" => 'storage/' . $directory->getFilePath()
                 ]);
+            } else {
+                if (!Str::contains($object->{"$field"} ?? '', $file->getClientOriginalName())) {
+                    File::delete($object->{"$field"});
+                    $url = str_replace('storage', '', substr($object->{"$field"}, 0, (strripos($object->{"$field"}, '/') + 1)));
+                    $file->storeAs($url, $file->getClientOriginalName(), 'public');
+                    $request->merge([
+                        "{$field}" => 'storage' . $url . $file->getClientOriginalName()
+                    ]);
+                }
             }
         }
     }
