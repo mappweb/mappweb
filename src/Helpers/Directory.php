@@ -58,10 +58,10 @@ class Directory
     public function getFilePath()
     {
         if ($this->file instanceof UploadedFile){
-            return "{$this->getPath()} {$this->file->getClientOriginalName()}";
+            return "{$this->getPath()}{$this->file->getClientOriginalName()}";
         }
 
-        return "{$this->getPath()} {$this->file}";
+        return "{$this->getPath()}{$this->file}";
     }
 
     /**
