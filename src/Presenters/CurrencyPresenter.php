@@ -20,7 +20,7 @@ class CurrencyPresenter
      */
     public function moneyFormat($number, $format = '% ')
     {
-        return money_format($number, $format);
+        return money_format($format, $number);
     }
 
     /**

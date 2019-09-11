@@ -7,14 +7,16 @@
  */
 
 namespace Mappweb\Mappweb\Helpers;
-use File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 
 class Directory
 {
-
     protected $path;
     protected $file;
+
     /**
      * Directory constructor.
      * @param $uuid
@@ -26,6 +28,7 @@ class Directory
         $this->path = $type . '/' . substr($uuid, 0, 2) . '/' . substr($uuid, 2, 2) . '/' . substr($uuid, 4) . '/';
         $this->file = $file;
     }
+
     /**
      * Create directories if not exist
      *
@@ -38,6 +41,8 @@ class Directory
     }
 
     /**
+     * Get current directory
+     *
      * @return string
      */
     public function getPath()
@@ -46,10 +51,47 @@ class Directory
     }
 
     /**
+     * Get current file path
+     *
      * @return string
      */
     public function getFilePath()
     {
-        return "{$this->getPath()}".$this->file->getClientOriginalName();
+        if ($this->file instanceof UploadedFile){
+            return "{$this->getPath()} {$this->file->getClientOriginalName()}";
+        }
+
+        return "{$this->getPath()} {$this->file}";
+    }
+
+    /**
+     * Check if file exist on disk
+     *
+     * @param string $disk
+     * @return bool
+     */
+    public function check($disk = 'public')
+    {
+        if (Storage::disk($disk)->exists($this->getFilePath())){
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Move current file to other path
+     *
+     * @param string $toPath
+     * @param string $disk
+     * @return bool
+     */
+    public function move($toPath, $disk = 'public')
+    {
+        if ($this->check()){
+            return Storage::disk($disk)->move($this->getFilePath(), $toPath);
+        }
+
+        return false;
     }
 }

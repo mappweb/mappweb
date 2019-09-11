@@ -70,7 +70,7 @@ class Util
             $data['toast']['message'] = __('MappWeb::toast.body.success');
 
             if ($destroy){
-                $data['toast']['message'] = __('MappWeb::toast.body_delete.error');
+                $data['toast']['message'] = __('MappWeb::toast.body_delete.success');
             }
         } else {
             $data['toast']['type'] = 'error';
