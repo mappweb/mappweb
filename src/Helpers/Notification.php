@@ -9,10 +9,10 @@
 namespace Mappweb\Mappweb\Helpers;
 
 
-use LaravelFCM\Facades\FCM;
+/*use LaravelFCM\Facades\FCM;
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
-use LaravelFCM\Message\PayloadNotificationBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;*/
 
 class Notification
 {
@@ -57,7 +57,7 @@ class Notification
      */
     public static function smartPhone($tokens, $title = 'my title', $body = 'Hello world'){
 
-        $optionBuilder = new OptionsBuilder();
+        /*$optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
 
         $notificationBuilder = new PayloadNotificationBuilder();
@@ -70,6 +70,6 @@ class Notification
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
 
-        return $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
+        return $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);*/
     }
 }
