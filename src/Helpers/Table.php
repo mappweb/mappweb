@@ -38,7 +38,7 @@ class Table extends Builder
             $this->addColumn($column);
         }
 
-        $this->addAction(['title' => __('global.accion')]);
+        $this->addAction(['title' => __('global.action')]);
     }
 
     /**
