@@ -12,12 +12,6 @@ use Mappweb\Mappweb\Models\Scopes\OrderGlobalScope;
 
 trait GlobalScopeManager
 {
-    protected $allowOrderByGlobalScope = true;
-
-    protected $orderBy = 'created_at';
-
-    protected $direction = 'asc';
-
     public static function bootGlobalScopeManager()
     {
         static::addGlobalScope(new OrderGlobalScope);
