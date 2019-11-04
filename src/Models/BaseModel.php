@@ -48,21 +48,21 @@ class BaseModel extends Model implements Auditable
      *
      * @var bool $allowOrderByGlobalScope
      */
-    protected $allowOrderByGlobalScope = true;
+    public $allowOrderByGlobalScope = true;
 
     /**
      * Field to apply order by
      *
      * @var string
      */
-    protected $orderBy = 'created_at';
+    public $orderBy = 'created_at';
 
     /**
      * Direction of the order by field
      *
      * @var string
      */
-    protected $direction = 'asc';
+    public $direction = 'asc';
 
     /**
      * @return bool
