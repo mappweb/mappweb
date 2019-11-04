@@ -8,7 +8,7 @@
 namespace Mappweb\Mappweb\Models\Extensions;
 
 
-use Illuminate\Database\Eloquent\Builder;
+use Mappweb\Mappweb\Models\Scopes\OrderGlobalScope;
 
 trait GlobalScopeManager
 {
@@ -20,25 +20,6 @@ trait GlobalScopeManager
 
     public static function bootGlobalScopeManager()
     {
-        if (self::orderByAllowed()){
-            static::addGlobalScope('order_by', function (Builder $builder){
-                $builder->orderBy(self::getOrderBy(), self::getDirection());
-            });
-        }
-    }
-
-    protected function orderByAllowed()
-    {
-        return $this->allowOrderByGlobalScope;
-    }
-
-    protected function getOrderBy()
-    {
-        return $this->orderBy;
-    }
-
-    protected function getDirection()
-    {
-        return $this->direction;
+        static::addGlobalScope(new OrderGlobalScope);
     }
 }
