@@ -44,6 +44,27 @@ class BaseModel extends Model implements Auditable
     protected $allowUuid = true;
 
     /**
+     * Allow add order by created at global scope
+     *
+     * @var bool $allowOrderByGlobalScope
+     */
+    protected $allowOrderByGlobalScope = true;
+
+    /**
+     * Field to apply order by
+     *
+     * @var string
+     */
+    protected $orderBy = 'created_at';
+
+    /**
+     * Direction of the order by field
+     *
+     * @var string
+     */
+    protected $direction = 'asc';
+
+    /**
      * @return bool
      */
     public function getIncrementing()
