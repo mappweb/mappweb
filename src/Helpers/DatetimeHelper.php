@@ -5,7 +5,7 @@
  * Time: 10:01 p. m.
  */
 
-namespace App\Helpers;
+namespace Mappweb\Mappweb\Helpers;
 
 
 use Carbon\Carbon;
