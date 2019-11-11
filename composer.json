@@ -16,7 +16,8 @@
         "owen-it/laravel-auditing": "^9.2",
         "jeremykenedy/laravel-roles": "^2.2",
         "barryvdh/laravel-ide-helper": "^2.6",
-        "torann/geoip": "^1.0"
+        "torann/geoip": "^1.0",
+        "intervention/image": "^2.5"
     },
     "autoload": {
         "psr-4": {
