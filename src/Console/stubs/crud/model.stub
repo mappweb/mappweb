@@ -1,0 +1,19 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+use Mappweb\Mappweb\Models\BaseModel;
+
+class DummyClass extends BaseModel
+{
+    protected $fillable = [
+        '',
+    ];
+
+    public static function getColumnsTable(){
+        return [
+            ['data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => '#', 'searchable' => false, 'orderable' => false],
+        ];
+    }
+}
