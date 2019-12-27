@@ -5,6 +5,8 @@ namespace Mappweb\Mappweb;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
+use Mappweb\Mappweb\Console\CrudMakeCommand;
+use Mappweb\Mappweb\Console\MappwebModelMakeCommand;
 
 class MappWebServiceProvider extends ServiceProvider
 {
@@ -36,6 +38,7 @@ class MappWebServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerAuditableMacroBlueprint();
+        $this->registerCommands();
     }
 
     /**
@@ -80,5 +83,13 @@ class MappWebServiceProvider extends ServiceProvider
         Response::macro('crud', function ($object){
             return Response::json($object);
         });
+    }
+
+    protected function registerCommands()
+    {
+        $this->commands([
+            MappwebModelMakeCommand::class,
+            CrudMakeCommand::class,
+        ]);
     }
 }
