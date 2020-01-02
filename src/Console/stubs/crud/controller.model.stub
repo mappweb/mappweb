@@ -25,7 +25,7 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        //
+        return $this->createOrEdit();
     }
 
     /**
@@ -36,7 +36,7 @@ class DummyClass extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->storeOrUpdate($request);
     }
 
     /**
@@ -58,7 +58,7 @@ class DummyClass extends Controller
      */
     public function edit(DummyModelClass $DummyModelVariable)
     {
-        //
+        return $this->createOrEdit($DummyModelVariable->id);
     }
 
     /**
@@ -70,7 +70,7 @@ class DummyClass extends Controller
      */
     public function update(Request $request, DummyModelClass $DummyModelVariable)
     {
-        //
+        return $this->storeOrUpdate($request, $DummyModelVariable->id);
     }
 
     /**
@@ -89,6 +89,25 @@ class DummyClass extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(DummyModelClass $DummyModelVariable)
+    {
+        //
+    }
+
+    /**
+     * @param null $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function createOrEdit($id = null)
+    {
+        //
+    }
+
+    /**
+     * @param $request
+     * @param null $id
+     * @return mixed
+     */
+    protected function storeOrUpdate($request, $id = null)
     {
         //
     }
