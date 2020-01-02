@@ -6,6 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
 use Mappweb\Mappweb\Console\CrudMakeCommand;
+use Mappweb\Mappweb\Console\MappwebControllerMakeCommand;
 use Mappweb\Mappweb\Console\MappwebModelMakeCommand;
 
 class MappWebServiceProvider extends ServiceProvider
@@ -85,10 +86,14 @@ class MappWebServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     *
+     */
     protected function registerCommands()
     {
         $this->commands([
             MappwebModelMakeCommand::class,
+            MappwebControllerMakeCommand::class,
             CrudMakeCommand::class,
         ]);
     }
