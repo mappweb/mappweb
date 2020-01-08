@@ -10,6 +10,7 @@ namespace Mappweb\Mappweb\Console;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputOption;
 
 class MappwebModelMakeCommand extends GeneratorCommand
 {
@@ -53,10 +54,20 @@ class MappwebModelMakeCommand extends GeneratorCommand
             return false;
         }
 
-        $this->createObserver();
+        if ($this->option('observer')) {
+            $this->createObserver();
+        }
+
+        if ($this->option('controller')) {
+            $this->createController();
+        }
+
+        if ($this->option('request')) {
+            $this->createRequest();
+        }
+
         $this->createMigration();
-        $this->createController();
-        $this->createRequest();
+
     }
 
     /**
@@ -99,7 +110,7 @@ class MappwebModelMakeCommand extends GeneratorCommand
         $controller = Str::studly(class_basename($this->argument('name')));
         $modelName = $this->qualifyClass($this->getNameInput());
 
-        $this->call('make:controller', [
+        $this->call('mappweb:make-controller', [
             'name' => "{$controller}Controller",
             '--model' => $modelName,
         ]);
@@ -137,5 +148,19 @@ class MappwebModelMakeCommand extends GeneratorCommand
     protected function getModelName()
     {
         return Str::studly(class_basename($this->argument('name')));
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['observer', 'o', InputOption::VALUE_NONE, 'Create a new observer for the model'],
+            ['request', 'r', InputOption::VALUE_NONE, 'Create a new request for the model'],
+            ['controller', 'c', InputOption::VALUE_NONE, 'Create a new controller for the model'],
+        ];
     }
 }

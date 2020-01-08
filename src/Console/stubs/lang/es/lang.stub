@@ -1,0 +1,12 @@
+<?php
+
+return [
+    'fillable' => [
+        'id' => '#',
+    ],
+    'actions' => [
+        'add' => 'Crear DummyModel',
+        'edit' => 'Editar DummyModel',
+        'destroy' => 'Eliminar DummyModel'
+    ],
+];

@@ -41,7 +41,7 @@ class CrudMakeCommand extends Command
     public function handle()
     {
         $this->createMappwebModel();
-        //$this->createLang();
+        $this->createLang();
         //$this->createView();
     }
 
@@ -52,12 +52,21 @@ class CrudMakeCommand extends Command
         ]);
     }
 
-    /*
+
     protected function createLang()
     {
-        //
+        $this->call('mappweb:make-lang', [
+            'name' => $this->getNameInput(),
+            '--locale' => 'es'
+        ]);
+
+        $this->call('mappweb:make-lang', [
+            'name' => $this->getNameInput(),
+            '--locale' => 'en'
+        ]);
     }
 
+    /*
     protected function createView()
     {
         //
