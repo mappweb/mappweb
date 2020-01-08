@@ -2,7 +2,6 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Database\Eloquent\Model;
 use Mappweb\Mappweb\Models\BaseModel;
 
 class DummyClass extends BaseModel
