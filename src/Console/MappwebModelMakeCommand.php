@@ -22,13 +22,6 @@ class MappwebModelMakeCommand extends GeneratorCommand
     protected $name = 'mappweb:make-model';
 
     /**
-     * The console command signature.
-     *
-     * @var string
-     */
-    protected $signature = 'mappweb:make-model {name}';
-
-    /**
      * The console command description.
      *
      * @var string
@@ -158,9 +151,9 @@ class MappwebModelMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['observer', 'o', InputOption::VALUE_NONE, 'Create a new observer for the model'],
-            ['request', 'r', InputOption::VALUE_NONE, 'Create a new request for the model'],
-            ['controller', 'c', InputOption::VALUE_NONE, 'Create a new controller for the model'],
+            ['observer', 'o', InputOption::VALUE_OPTIONAL, 'Create a new observer for the model'],
+            ['request', 'r', InputOption::VALUE_OPTIONAL, 'Create a new request for the model'],
+            ['controller', 'c', InputOption::VALUE_OPTIONAL, 'Create a new controller for the model'],
         ];
     }
 }

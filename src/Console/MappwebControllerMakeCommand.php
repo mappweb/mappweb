@@ -17,13 +17,6 @@ class MappwebControllerMakeCommand extends GeneratorCommand
     protected $name = 'mappweb:make-controller';
 
     /**
-     * The console command signature.
-     *
-     * @var string
-     */
-    protected $signature = 'mappweb:make-controller {name}';
-
-    /**
      * The console command description.
      *
      * @var string
