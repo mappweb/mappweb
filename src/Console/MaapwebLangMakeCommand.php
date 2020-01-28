@@ -108,6 +108,7 @@ class MaapwebLangMakeCommand extends GeneratorCommand
     protected function getPath($name)
     {
         $locale = $this->option('locale')? : config('app.locale');
+        $this->type = "Lang $locale";
 
         return resource_path('/lang/'. $locale  .'/'). $this->getSnakeNameInput() .'.php';
     }

@@ -9,6 +9,7 @@ use Mappweb\Mappweb\Console\CrudMakeCommand;
 use Mappweb\Mappweb\Console\MaapwebLangMakeCommand;
 use Mappweb\Mappweb\Console\MappwebControllerMakeCommand;
 use Mappweb\Mappweb\Console\MappwebModelMakeCommand;
+use Mappweb\Mappweb\Console\MappwebViewMakeCommand;
 
 class MappWebServiceProvider extends ServiceProvider
 {
@@ -97,6 +98,7 @@ class MappWebServiceProvider extends ServiceProvider
             MappwebControllerMakeCommand::class,
             MaapwebLangMakeCommand::class,
             MappwebModelMakeCommand::class,
+            MappwebViewMakeCommand::class,
         ]);
     }
 }

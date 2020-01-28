@@ -41,19 +41,22 @@ class CrudMakeCommand extends Command
     public function handle()
     {
         $this->createMappwebModel();
-        $this->createLang();
-        //$this->createView();
+        $this->createLangs();
+        $this->createViews();
     }
 
     protected function createMappwebModel()
     {
         $this->call('mappweb:make-model', [
-            'name' => $this->getNameInput()
+            'name' => $this->getNameInput(),
+            '--observer' => true,
+            '--request' => true,
+            '--controller' => true,
         ]);
     }
 
 
-    protected function createLang()
+    protected function createLangs()
     {
         $this->call('mappweb:make-lang', [
             'name' => $this->getNameInput(),
@@ -66,11 +69,27 @@ class CrudMakeCommand extends Command
         ]);
     }
 
-    /*
-    protected function createView()
+    protected function createViews()
     {
-        //
-    }*/
+        $this->call('mappweb:make-view', [
+            'name' => $this->getNameInput(),
+        ]);
+
+        $this->call('mappweb:make-view', [
+            'name' => $this->getNameInput(),
+            '--add' => true,
+        ]);
+
+        $this->call('mappweb:make-view', [
+            'name' => $this->getNameInput(),
+            '--destroy' => true,
+        ]);
+
+        $this->call('mappweb:make-view', [
+            'name' => $this->getNameInput(),
+            '--show' => true,
+        ]);
+    }
 
     protected function getNameInput()
     {
