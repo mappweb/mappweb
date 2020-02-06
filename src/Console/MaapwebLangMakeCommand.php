@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 
 class MaapwebLangMakeCommand extends GeneratorCommand
 {
+    use BuildStubTrait;
     /**
      * The console command name.
      *
@@ -84,32 +85,22 @@ class MaapwebLangMakeCommand extends GeneratorCommand
 
         $this->replaceModelName($stub);
 
+        $this->replaceKebabPluralModelName($stub);
+
         return $stub;
     }
 
     protected function qualifyClass($name)
     {
-        return $this->getSnakeNameInput();
+        return Str::snake($name);
     }
 
-    protected function replaceModelName(&$stub)
-    {
-        $stub = str_replace('DummyModel', Str::camel($this->getNameInput()), $stub);
-    }
-
-    /**
-     * @return string
-     */
-    protected function getSnakeNameInput()
-    {
-        return Str::snake($this->getNameInput());
-    }
 
     protected function getPath($name)
     {
         $locale = $this->option('locale')? : config('app.locale');
         $this->type = "Lang $locale";
 
-        return resource_path('/lang/'. $locale  .'/'). $this->getSnakeNameInput() .'.php';
+        return resource_path('/lang/'. $locale  .'/'). $this->qualifyClass($name) .'.php';
     }
 }

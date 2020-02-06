@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'module' => 'DummyModel|DummyKebabPluralModel',
     'fillable' => [
         'id' => '#',
     ],
