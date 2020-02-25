@@ -10,6 +10,7 @@ namespace Mappweb\Mappweb\Helpers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -20,20 +21,22 @@ class ImageHelper
     /**
      * Update or Create a Image
      *
-     * @param $request
+     * @param Request $request
      * @param $input_name
      * @param $field_name
      * @param $class
      * @param null $id
+     * @param int $resize_width
+     * @param int $resize_height
      */
-    public static function updateOrCreate(Request &$request, $input_name, $field_name, $class, $id = null)
+    public static function updateOrCreate(Request &$request, $input_name, $field_name, $class, $id = null, $resize_width = 300, $resize_height = 200)
     {
 
         if ($request->hasFile("{$input_name}")) {
 
             $name = uniqid();
             $file = $request->file("{$input_name}");
-            $binary = Image::make($file->getPathname())->resize(300, 200)->encode();
+            $binary = Image::make($file->getPathname())->resize($resize_width, $resize_height)->encode();
             if (!is_array($file) && is_null($id)) {
                 $request->merge(["{$field_name}" => static::handleImage($name, $file, $binary)]);
             }
@@ -42,7 +45,7 @@ class ImageHelper
                 $object = $class::find($id);
                 if (!Str::contains($object->{"$field_name"}, $file->getClientOriginalName())) {
                     File::delete($object->{"$field_name"});
-                    $url = str_replace('storage', '', substr($object->{"$field_name"}, 1, (strripos($object->{"$field_name"}, '/') + 1)));
+                    $url = str_replace('storage', '', substr($object->{"$field_name"}, 0, (strripos($object->{"$field_name"}, '/') + 1)));
                     $request->merge(["{$field_name}" => static::handleImage($name, $file, $binary, $url)]);
                 }
             }
@@ -61,7 +64,7 @@ class ImageHelper
      * @param $field_name
      * @param $class
      */
-    public static function createMultiple(&$request, $input_name, $field_name, $class = \stdClass::class, $data = [])
+    public static function createMultiple($request, $input_name, $field_name, $class = \stdClass::class, $data = [])
     {
         if ($request->hasFile("{$input_name}")) {
             $name = uniqid();
@@ -70,6 +73,7 @@ class ImageHelper
                 foreach ($files as $file) {
                     $binary = Image::make($file->getPathname())->resize(300, 200)->encode();
                     $data["{$field_name}"] = static::handleImage($name, $file, $binary);
+                    $data["extension"] = $file->getClientOriginalExtension();
                     Util::updateOrCreate($class, $data);
                 }
             }
@@ -86,12 +90,14 @@ class ImageHelper
     private static function handleImage($name, $file, $binary, $url = '')
     {
         $file_name = $file->getClientOriginalName();
-        $directory = new Directory($name, $file_name);
+        $directory = (new Directory($name, $file_name))->getFilePath();
         if (($url != '')) {
-            $directory = $url;
+            if ($file instanceof UploadedFile){
+                $directory = $url.$file->getClientOriginalName();
+            }
         }
-        Storage::disk('public')->put($directory->getFilePath(), (string)$binary, 'public');
-        return 'storage/' . $directory->getFilePath();
+        Storage::disk('public')->put($directory, (string)$binary, 'public');
+        return 'storage/' . $directory;
     }
 
 

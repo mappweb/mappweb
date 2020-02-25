@@ -1,4 +1,4 @@
-{!! Form::open(['class' => 'floating-labels delete-ajax', 'url' => route('DummyKebabPluralModel.destroy', ['DummyKebabModel' => $DummyModel->id])]) !!}
+{!! Form::open(['class' => 'floating-labels delete-ajax', 'url' => route('DummyKebabPluralModel.destroy', ['DummySnakeModel' => $DummyModel->id])]) !!}
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">

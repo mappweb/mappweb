@@ -28,9 +28,9 @@ class Table extends Builder
 
 
     /**
-     *
+     * @param boolean $action
      */
-    public function addColumns()
+    public function addColumns($action = true)
     {
         $columns = $this->class::getColumnsTable();
 
@@ -38,7 +38,8 @@ class Table extends Builder
             $this->addColumn($column);
         }
 
-        $this->addAction(['title' => __('global.action')]);
+        if($action)
+            $this->addAction(['title' => __('global.action')]);
     }
 
     /**
